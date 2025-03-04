@@ -14,19 +14,8 @@ My solution for Mad Pod Racing AI challenge at codingame.com
  
 ## Contents <!-- omit from toc -->
 
-- [⬇️ Installation](#️-installation)
 - [🏃 Getting Started](#-getting-started)
 - [🧾 License](#-license)
-
-## ⬇️ Installation
-
-You can install **mad_pod_racing** via pip:
-
-```bash
-pip install mad-pod-racing
-```
-
-<!-- ### Requirements -->
 
 ## 🏃 Getting Started
 

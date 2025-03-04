@@ -31,6 +31,7 @@ dependencies = [
     # "cyclopts",
     # "toolz",
     # "tqdm",
+    "numpy>=2.2.3",
 ]
 
 
@@ -154,6 +155,10 @@ exclude = []
         "S101",   # Use of `assert` detected
         "G004",   # Logging statement uses f-string
         "TC006",  # Add quotes around typing.cast (hurts refactoring)
+        "D100", # Missing docstring in public module
+        "D101", # Missing docstring in public class
+        "D102", # Missing docstring in public method
+        "D103", # Missing docstring in public function
     ]
 
         [tool.ruff.lint.per-file-ignores]
