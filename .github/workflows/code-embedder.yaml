@@ -1,0 +1,54 @@
+name: 🪄 Code Embedder
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  code_embedder:
+    runs-on: ubuntu-latest
+    env:
+      PYTHON_VERSION: "3.12"
+    steps:
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐍 Install uv with caching
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+      - name: 🐍 Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: 💾 Setup pip cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('uv.lock') }}
+
+      # !! You have to manually add extras used in snippet
+      - name: 📥 Install the project
+        run: |
+          uv pip install .  # extras with ".[extra_1, extra_2, ...]" including quotation marks ""
+
+      - name: 🪄 Format raw code snippets with ruff
+        run: |
+          pipx install ruff
+          ruff format dev/readme_snippets/
+
+      - name: 🪄 Format print comments in code snippets
+        run: python dev/scripts/format_snippet_prints.py
+
+      - name: 📝 Run code embedder
+        uses: kvankova/code-embedder@v1.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
