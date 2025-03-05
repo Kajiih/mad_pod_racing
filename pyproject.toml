@@ -10,7 +10,7 @@ description = "My solution for Mad Pod Racing AI challenge at codingame.com"
 readme = "README.md"
 license-files = ["LICENSE"]
 requires-python = ">=3.12"
-keywords = ["python"]                                         # TODO: Add these
+keywords = ["python", "AI", "codingame", "mad pod race"]                     # TODO: Add these
 
 classifiers = [ # https://pypi.org/classifiers/
     "Development Status :: 2 - Pre-Alpha",
@@ -32,6 +32,8 @@ dependencies = [
     # "toolz",
     # "tqdm",
     "numpy>=2.2.3",
+    "scipy>=1.15.2",
+    "matplotlib>=3.10.1",
 ]
 
 
@@ -155,10 +157,10 @@ exclude = []
         "S101",   # Use of `assert` detected
         "G004",   # Logging statement uses f-string
         "TC006",  # Add quotes around typing.cast (hurts refactoring)
-        "D100", # Missing docstring in public module
-        "D101", # Missing docstring in public class
-        "D102", # Missing docstring in public method
-        "D103", # Missing docstring in public function
+        "D100",   # Missing docstring in public module
+        "D101",   # Missing docstring in public class
+        "D102",   # Missing docstring in public method
+        "D103",   # Missing docstring in public function
     ]
 
         [tool.ruff.lint.per-file-ignores]
@@ -184,9 +186,9 @@ exclude = []
         convention = "google"
         [tool.ruff.lint.pylint]
         max-args = 6
-[tool.ruff.format]
-preview = true
-docstring-code-format = true
+    [tool.ruff.format]
+    preview = true
+    docstring-code-format = true
 
 
 # == Pytest == #
@@ -206,10 +208,7 @@ docstring-code-format = true
     omit = ["src/mad_pod_racing/__about__.py", "hatch_build.py"]
 
     [tool.coverage.paths]
-    PackageName = [
-        "src/mad_pod_racing",
-        "*/mad_pod_racing/src/mad_pod_racing",
-    ]
+    PackageName = ["src/mad_pod_racing", "*/mad_pod_racing/src/mad_pod_racing"]
     tests = ["tests", "*/mad_pod_racing/tests"]
 
     [tool.coverage.report]

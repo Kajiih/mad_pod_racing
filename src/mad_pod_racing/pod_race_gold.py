@@ -224,7 +224,6 @@ class Pod(Entity):
         """Return the normalized facing vector of the pod."""
         return np.asarray([math.cos(self.angle_rad), math.sin(self.angle_rad)])  # pyright: ignore[reportReturnType]
 
-    # def update_from_input(self, x: int, y: int, vx: int, vy: int, angle: int, cp_id: int)-> None:
     def update_from_input(self, inputs: list[int]) -> None:
         self.x = inputs[0]
         self.y = inputs[1]
@@ -232,12 +231,6 @@ class Pod(Entity):
         self.vy = inputs[3]
         self.angle = inputs[4]
         self.cp = inputs[5]
-        # pod.x = x
-        # pod.y = y
-        # pod.vx = vx
-        # pod.vy = vy
-        # pod.cp = cp_id
-        # pod.angle = angle
 
     def collision_impulse(self, other_pod: Pod) -> float:
         if not self.collides_with(other_pod):
